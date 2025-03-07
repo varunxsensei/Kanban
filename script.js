@@ -2,8 +2,8 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const todoBoard = document.getElementById("todo-board");
 const allBoards = document.querySelectorAll(".board");
 const allItem = document.querySelectorAll(".item");
-const addBoardBtn = document.getElementById("add-board-btn")
-const container = document.getElementById("my-container")
+const addBoardBtn = document.getElementById("add-board-btn");
+const container = document.getElementById("my-container");
 
 function attachFlyingClass(target) {
   target.addEventListener("dragstart", () => {
@@ -14,11 +14,11 @@ function attachFlyingClass(target) {
   });
 }
 
-function addFlyingElement(target){
-    target.addEventListener('dragover',()=>{
-      const flyingElement = document.querySelector(".flying")
-      target.appendChild(flyingElement)
-    })
+function addFlyingElement(target) {
+  target.addEventListener("dragover", () => {
+    const flyingElement = document.querySelector(".flying");
+    target.appendChild(flyingElement);
+  });
 }
 
 addTaskBtn.addEventListener("click", () => {
@@ -35,21 +35,31 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
-
-
 allItem.forEach(attachFlyingClass);
 
-addBoardBtn.addEventListener('click',()=>{
-  const newBoard = document.createElement("div")
-  newBoard.classList.add("board")
-  const title = document.createElement("h4")
-  const input = prompt("Set a title ")
-  title.innerText = input
-  newBoard.classList.add("board")
-  newBoard.appendChild(title)
-  addFlyingElement(newBoard)
-  container.appendChild(newBoard)
-})
+addBoardBtn.addEventListener("click", () => {
+  const newBoard = document.createElement("div");
+  newBoard.classList.add("board");
+  const title = document.createElement("h4");
+  const input = prompt("Set a title ");
+  if (!input) return;
+  else {
+    title.innerText = input;
+    newBoard.classList.add("board");
+    newBoard.appendChild(title);
+    addFlyingElement(newBoard);
+    container.appendChild(newBoard);
+  }
+});
 
-allBoards.forEach(addFlyingElement)
+allBoards.forEach(addFlyingElement);
 
+allItem.forEach((it) => {
+  it.addEventListener("dblclick", () => {
+    const input = prompt("Edit your task");
+    if (!input) return;
+    else {
+      it.innerText = input;
+    }
+  });
+});
