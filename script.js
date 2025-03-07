@@ -2,9 +2,7 @@ const addTaskBtn = document.getElementById("add-task-btn");
 const todoBoard = document.getElementById("todo-board");
 const allBoards = document.querySelectorAll(".board");
 const allItem = document.querySelectorAll(".item");
-
-const addBoard = document.getElementById("add-board-btn")
-
+const addBoardBtn = document.getElementById("add-board-btn")
 const container = document.getElementById("my-container")
 
 function attachFlyingClass(target) {
@@ -42,8 +40,13 @@ allBoards.forEach((board) => {
 });
 
 
-addBoard.addEventListener('click',()=>{
-    const newBoard = document.createElement("div")
-    newBoard.classList.add("board")
-    container.appendChild(newBoard)
+addBoardBtn.addEventListener('click',()=>{
+  const newBoard = document.createElement("div")
+  newBoard.classList.add("board")
+  const title = document.createElement("h4")
+  const input = prompt("Set a title ")
+  title.innerText = input
+  newBoard.classList.add("board")
+  newBoard.appendChild(title)
+  container.appendChild(newBoard)
 })
