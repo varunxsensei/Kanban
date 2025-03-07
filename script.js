@@ -14,6 +14,13 @@ function attachFlyingClass(target) {
   });
 }
 
+function addFlyingElement(target){
+    target.addEventListener('dragover',()=>{
+      const flyingElement = document.querySelector(".flying")
+      target.appendChild(flyingElement)
+    })
+}
+
 addTaskBtn.addEventListener("click", () => {
   const input = prompt("What is the task?");
   if (!input) return;
@@ -32,14 +39,6 @@ addTaskBtn.addEventListener("click", () => {
 
 allItem.forEach(attachFlyingClass);
 
-allBoards.forEach((board) => {
-  board.addEventListener("dragover", () => {
-    const flyingElement = document.querySelector(".flying");
-    board.appendChild(flyingElement);
-  });
-});
-
-
 addBoardBtn.addEventListener('click',()=>{
   const newBoard = document.createElement("div")
   newBoard.classList.add("board")
@@ -48,5 +47,9 @@ addBoardBtn.addEventListener('click',()=>{
   title.innerText = input
   newBoard.classList.add("board")
   newBoard.appendChild(title)
+  addFlyingElement(newBoard)
   container.appendChild(newBoard)
 })
+
+allBoards.forEach(addFlyingElement)
+
