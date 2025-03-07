@@ -4,6 +4,7 @@ const allBoards = document.querySelectorAll(".board");
 const allItem = document.querySelectorAll(".item");
 const addBoardBtn = document.getElementById("add-board-btn");
 const container = document.getElementById("my-container");
+const removeBoardBtn = document.getElementById("remove-board-btn");
 
 function attachFlyingClass(target) {
   target.addEventListener("dragstart", () => {
@@ -62,4 +63,13 @@ allItem.forEach((it) => {
       it.innerText = input;
     }
   });
+});
+
+removeBoardBtn.addEventListener("click", () => {
+  const board = document.querySelectorAll(".board");
+  if (board.length > 1) {
+    board[board.length - 1].remove();
+  } else {
+    return;
+  }
 });
